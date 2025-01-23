@@ -23,7 +23,7 @@ const Login = () => {
       <div className="bg-white p-8 rounded-lg shadow-md w-96">
         <div className="flex flex-col items-center mb-8">
           <Shield className="h-12 w-12 text-primary-600 mb-2" />
-          <h1 className="text-2xl font-bold text-gray-800">AutoSeguro</h1>
+          <h1 className="text-2xl font-bold text-gray-800">SIGA</h1>
           <p className="text-gray-600">Sistema de Gestão de Seguros</p>
         </div>
 
