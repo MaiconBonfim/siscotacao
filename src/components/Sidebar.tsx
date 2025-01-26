@@ -39,4 +39,6 @@ const Sidebar: React.FC<SidebarProps> = ({ items }) => {
       </nav>
     </div>
   );
-}
+};
+
+export default Sidebar;
