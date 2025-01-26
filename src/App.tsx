@@ -7,15 +7,32 @@ import Vehicles from './pages/Vehicles';
 import Policies from './pages/Policies';
 import Claims from './pages/Claims';
 import Clients from './pages/Clients';
+import Login from './pages/Login';
 import { useAuth } from './hooks/useAuth';
 
+function PrivateRoute({ children }: { children: React.ReactNode }) {
+  const { isAuthenticated } = useAuth();
+  return isAuthenticated ? <>{children}</> : <Navigate to="/login" />;
+}
+
 function App() {
-  const { logout } = useAuth();
+  const { isAuthenticated, logout } = useAuth();
 
   const handleLogout = () => {
     logout();
-    window.location.href = '/';
+    window.location.href = '/login';
   };
+
+  if (!isAuthenticated) {
+    return (
+      <Router>
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
+      </Router>
+    );
+  }
 
   return (
     <Router>
@@ -40,11 +57,31 @@ function App() {
             </button>
           </div>
           <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/clients" element={<Clients />} />
-            <Route path="/vehicles" element={<Vehicles />} />
-            <Route path="/policies" element={<Policies />} />
-            <Route path="/claims" element={<Claims />} />
+            <Route path="/" element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            } />
+            <Route path="/clients" element={
+              <PrivateRoute>
+                <Clients />
+              </PrivateRoute>
+            } />
+            <Route path="/vehicles" element={
+              <PrivateRoute>
+                <Vehicles />
+              </PrivateRoute>
+            } />
+            <Route path="/policies" element={
+              <PrivateRoute>
+                <Policies />
+              </PrivateRoute>
+            } />
+            <Route path="/claims" element={
+              <PrivateRoute>
+                <Claims />
+              </PrivateRoute>
+            } />
             <Route path="*" element={<Navigate to="/" />} />
           </Routes>
         </div>
