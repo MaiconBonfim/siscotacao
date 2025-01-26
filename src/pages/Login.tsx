@@ -13,6 +13,8 @@ const Login = () => {
     const success = login(username, password);
     if (!success) {
       setError('Usuário ou senha incorretos');
+    } else {
+      window.location.reload();
     }
   };
 
@@ -20,7 +22,7 @@ const Login = () => {
     <div className="min-h-screen bg-gray-100 flex items-center justify-center">
       <div className="bg-white p-8 rounded-lg shadow-md w-96">
         <div className="flex flex-col items-center mb-8">
-          <Shield className="h-12 w-12 text-blue-600 mb-2" />
+          <Shield className="h-12 w-12 text-primary-600 mb-2" />
           <h1 className="text-2xl font-bold text-gray-800">AutoSeguro</h1>
           <p className="text-gray-600">Sistema de Gestão de Seguros</p>
         </div>
@@ -41,7 +43,7 @@ const Login = () => {
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
               required
             />
           </div>
@@ -55,14 +57,14 @@ const Login = () => {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
               required
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors duration-200"
+            className="w-full bg-primary-600 text-white py-2 px-4 rounded-md hover:bg-primary-700 transition-colors duration-200"
           >
             Entrar
           </button>
