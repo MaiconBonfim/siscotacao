@@ -1,17 +1,21 @@
 import React, { useState } from 'react';
 import { Shield } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const success = login(username, password);
-    if (!success) {
+    if (success) {
+      navigate('/');
+    } else {
       setError('Usuário ou senha incorretos');
     }
   };
