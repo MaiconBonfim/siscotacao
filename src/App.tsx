@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Car, FileText, AlertTriangle, LayoutDashboard, Users, LogOut } from 'lucide-react';
 import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
@@ -17,12 +17,6 @@ function PrivateRoute({ children }: { children: React.ReactNode }) {
 
 function AuthenticatedLayout() {
   const { logout } = useAuth();
-  const navigate = useNavigate();
-
-  const handleLogout = () => {
-    logout();
-    navigate('/login', { replace: true });
-  };
 
   return (
     <div className="flex h-screen bg-gray-100">
@@ -38,7 +32,7 @@ function AuthenticatedLayout() {
       <div className="flex-1 overflow-auto">
         <div className="p-4 bg-white shadow-sm flex justify-end">
           <button
-            onClick={handleLogout}
+            onClick={logout}
             className="flex items-center gap-2 text-gray-600 hover:text-gray-800"
           >
             <LogOut size={20} />
@@ -75,5 +69,3 @@ function App() {
     </Router>
   );
 }
-
-export default App;

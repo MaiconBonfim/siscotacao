@@ -17,6 +17,7 @@ export function useAuth() {
     if (username.toLowerCase() === ADMIN_USER && password === ADMIN_PASSWORD) {
       setIsAuthenticated(true);
       localStorage.setItem('auth', 'true');
+      window.location.reload(); // Force page reload after login
       return true;
     }
     return false;
@@ -25,6 +26,7 @@ export function useAuth() {
   const logout = () => {
     setIsAuthenticated(false);
     localStorage.removeItem('auth');
+    window.location.reload(); // Force page reload after logout
   };
 
   return { isAuthenticated, login, logout };
