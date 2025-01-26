@@ -7,8 +7,16 @@ import Vehicles from './pages/Vehicles';
 import Policies from './pages/Policies';
 import Claims from './pages/Claims';
 import Clients from './pages/Clients';
+import { useAuth } from './hooks/useAuth';
 
 function App() {
+  const { logout } = useAuth();
+
+  const handleLogout = () => {
+    logout();
+    window.location.href = '/';
+  };
+
   return (
     <Router>
       <div className="flex h-screen bg-gray-100">
@@ -24,11 +32,11 @@ function App() {
         <div className="flex-1 overflow-auto">
           <div className="p-4 bg-white shadow-sm flex justify-end">
             <button
-              onClick={() => window.location.reload()}
+              onClick={handleLogout}
               className="flex items-center gap-2 text-gray-600 hover:text-gray-800"
             >
               <LogOut size={20} />
-              Recarregar
+              Sair
             </button>
           </div>
           <Routes>
